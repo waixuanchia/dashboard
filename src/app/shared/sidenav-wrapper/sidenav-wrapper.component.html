@@ -1,0 +1,18 @@
+<app-navbar class="toolbar" [sidenav]="sidenav"></app-navbar>
+<mat-sidenav-container fullscreen [hasBackdrop]="false">
+    <!-- <app-sidenav></app-sidenav> -->
+    <mat-sidenav [style.paddingTop.px]="100" #sidenav [mode]="'side'" [(opened)]="opened">
+        <mat-nav-list>
+            <mat-list-item *ngFor="let navLink of NavLinks"  [activated]="navLink.isActive">
+                <a class="link" [routerLink]="navLink.href">{{ navLink.text }}</a>
+                <!-- <span matListItemLine>text</span> -->
+                
+
+            </mat-list-item>
+            
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <ng-content></ng-content>
+  
+</mat-sidenav-container>

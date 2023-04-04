@@ -1,0 +1,20 @@
+<div class="input">
+
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>{{ label }}</mat-label>
+        <input matInput [formControl]="formControl" (keypress)="textChange()" />
+        <mat-error *ngIf="formControl.errors?.['required'] && formControl.touched && formControl.dirty">    
+            This fields is required
+        </mat-error>
+        <mat-error *ngIf="formControl.errors?.['minlength'] && formControl.touched && formControl.dirty">   
+            This field requires minimum length of {{ formControl.errors?.['minlength'].requiredLength }} characters, The current length is {{ formControl.errors?.['minlength'].actualLength }}
+            
+        </mat-error>
+        <mat-error *ngIf="formControl.errors?.['maxlength'] && formControl.touched && formControl.dirty">   
+            This field requires maximum length of {{ formControl.errors?.['maxlength'].requiredLength }} characters, The current length is {{ formControl.errors?.['maxlength'].actualLength }}
+            
+        </mat-error>
+        
+    </mat-form-field>
+</div>
+

@@ -1,0 +1,47 @@
+
+<div class="table-box">
+
+    
+    <table #table mat-table class="mat-elevation-z8" [style.marginBottom.px]="12" [dataSource]="data" >
+        
+        <ng-container *ngFor="let column of displayedColumns.slice(0,-1)" [matColumnDef]="column">
+            <th mat-header-cell [ngStyle]="{'flex':'1','text-align':'center'}" *matHeaderCellDef>{{ column.replace('_',' ') | uppercase  }}</th>
+            
+            <td mat-cell [ngStyle]="{'flex':'1'}" *matCellDef="let element">{{ element[column] }}</td>
+            
+        </ng-container>
+        
+        <ng-container [matColumnDef]="'actions'">
+            <th mat-header-cell [ngStyle]="{'width':'20rem'}" *matHeaderCellDef>actions</th>
+            <td mat-cell [ngStyle]="{'width':'20rem'}" *matCellDef="let element">
+                <ng-container *ngIf="!action_table">
+
+                    <a [routerLink]="[element.id]" mat-raised-button color="primary">view</a>
+                    <button mat-button (click)="editOperation(element.id)">edit</button>
+                    <button mat-button color="warn" (click)="deleteOperation(element.id)">delete</button>
+                </ng-container>
+                <ng-container *ngIf="action_table">
+
+                    <a [routerLink]="[element.id]" color="primary" mat-raised-button class="action_button" (click)="viewOperation(element.id)">view</a>
+                    <ng-container *ngIf="element.status !== 'accepted' || element.status !== 'rejected'">
+                        <button mat-raised-button class="action_button" (click)="acceptOperation(element.id)">accept</button>
+                    </ng-container>
+                    <ng-container *ngIf="element.status !== 'accepted' || element.status !== 'accepted'">
+
+                        <button mat-raised-button color="warn" (click)="deleteOperation(element.id)">reject</button>
+                    </ng-container>
+                </ng-container>
+            </td>
+            
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
+        
+    </table>
+    
+    <app-paginator [dataSource]="data"></app-paginator>
+</div>
+    
+    
+

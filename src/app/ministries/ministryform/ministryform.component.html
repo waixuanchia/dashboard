@@ -1,0 +1,26 @@
+<mat-card class="material-card">
+    <button mat-icon-button>
+            
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <mat-card-header>
+        <mat-card-title><h2>Ministry Form</h2></mat-card-title>
+    </mat-card-header>
+
+        <app-form [form]="ministryForm">
+            <mat-card-content>
+                <app-input [formControl]="office_name" [label]="'office name'"></app-input>
+                <app-input [formControl]="address" [label]="'address'"></app-input>
+                <app-input [formControl]="faks" [label]="'faks'"></app-input>
+                <app-input [formControl]="tels" [label]="'tels'"></app-input>
+                <app-input [formControl]="emel" [label]="'emel'"></app-input>   
+            </mat-card-content>
+            <mat-card-actions>
+                <button class="submit-button"  color="primary" mat-raised-button>submit</button>
+                <button class="cancel-button" (click)="cancelOperation()" mat-flat-button>cancel</button>
+            </mat-card-actions>
+        </app-form>
+    
+
+        
+</mat-card>
